@@ -41,7 +41,8 @@ const categories = [
   {
     name: 'Business',
     subcategories: ['Virtual Assistant', 'Market Research', 'Business Plans', 'Data Analysis']
-  ]
+  }
+];
 
 const Header = () => {
   const { user, logout } = useAuth();
