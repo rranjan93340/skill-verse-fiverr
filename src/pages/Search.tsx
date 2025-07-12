@@ -17,7 +17,7 @@ const Search = () => {
   const [sortBy, setSortBy] = useState('relevance');
   const [category, setCategory] = useState(searchParams.get('category') || 'all');
 
-  // Mock search results
+  // Mock search results with new categories
   const [results] = useState([
     {
       id: '1',
@@ -25,7 +25,7 @@ const Search = () => {
       seller: { name: 'John Smith', avatar: '/placeholder.svg', rating: 4.9 },
       price: 150,
       image: '/placeholder.svg',
-      category: 'Web Development',
+      category: 'Programming & Tech',
       reviews: 127,
       tags: ['React', 'Node.js', 'Responsive']
     },
@@ -35,7 +35,7 @@ const Search = () => {
       seller: { name: 'Sarah Johnson', avatar: '/placeholder.svg', rating: 4.8 },
       price: 50,
       image: '/placeholder.svg',
-      category: 'Graphic Design',
+      category: 'Graphics & Design',
       reviews: 89,
       tags: ['Logo', 'Branding', 'Design']
     },
@@ -45,7 +45,7 @@ const Search = () => {
       seller: { name: 'Mike Davis', avatar: '/placeholder.svg', rating: 4.9 },
       price: 75,
       image: '/placeholder.svg',
-      category: 'Video Editing',
+      category: 'Video & Animation',
       reviews: 156,
       tags: ['Video', 'Editing', 'Motion Graphics']
     },
@@ -55,39 +55,67 @@ const Search = () => {
       seller: { name: 'Emma Wilson', avatar: '/placeholder.svg', rating: 4.7 },
       price: 40,
       image: '/placeholder.svg',
-      category: 'Writing',
+      category: 'Writing & Translation',
       reviews: 64,
       tags: ['SEO', 'Content', 'Copywriting']
     },
     {
       id: '5',
-      title: 'I will develop a mobile app',
+      title: 'I will create AI-powered chatbot',
       seller: { name: 'Alex Chen', avatar: '/placeholder.svg', rating: 4.8 },
       price: 300,
       image: '/placeholder.svg',
-      category: 'Mobile Development',
+      category: 'AI Services',
       reviews: 92,
-      tags: ['Mobile', 'iOS', 'Android']
+      tags: ['AI', 'Chatbot', 'Machine Learning']
     },
     {
       id: '6',
-      title: 'I will create social media graphics',
+      title: 'I will run targeted digital marketing campaigns',
       seller: { name: 'Lisa Brown', avatar: '/placeholder.svg', rating: 4.6 },
-      price: 25,
+      price: 200,
       image: '/placeholder.svg',
-      category: 'Graphic Design',
+      category: 'Digital Marketing',
       reviews: 78,
-      tags: ['Social Media', 'Graphics', 'Instagram']
+      tags: ['Marketing', 'Social Media', 'PPC']
+    },
+    {
+      id: '7',
+      title: 'I will compose original music for your project',
+      seller: { name: 'David Martinez', avatar: '/placeholder.svg', rating: 4.9 },
+      price: 120,
+      image: '/placeholder.svg',
+      category: 'Music & Audio',
+      reviews: 143,
+      tags: ['Music', 'Composition', 'Audio']
+    },
+    {
+      id: '8',
+      title: 'I will provide business consulting services',
+      seller: { name: 'Rachel Green', avatar: '/placeholder.svg', rating: 4.7 },
+      price: 80,
+      image: '/placeholder.svg',
+      category: 'Consulting',
+      reviews: 95,
+      tags: ['Business', 'Strategy', 'Consulting']
     }
   ]);
 
   const categories = [
     { value: 'all', label: 'All Categories' },
-    { value: 'web development', label: 'Web Development' },
-    { value: 'graphic design', label: 'Graphic Design' },
-    { value: 'video editing', label: 'Video Editing' },
-    { value: 'writing', label: 'Writing' },
-    { value: 'mobile development', label: 'Mobile Development' }
+    { value: 'graphics & design', label: 'Graphics & Design' },
+    { value: 'digital marketing', label: 'Digital Marketing' },
+    { value: 'writing & translation', label: 'Writing & Translation' },
+    { value: 'video & animation', label: 'Video & Animation' },
+    { value: 'music & audio', label: 'Music & Audio' },
+    { value: 'programming & tech', label: 'Programming & Tech' },
+    { value: 'ai services', label: 'AI Services' },
+    { value: 'consulting', label: 'Consulting' },
+    { value: 'data', label: 'Data' },
+    { value: 'business', label: 'Business' },
+    { value: 'personal growth & hobbies', label: 'Personal Growth & Hobbies' },
+    { value: 'photography', label: 'Photography' },
+    { value: 'finance', label: 'Finance' }
   ];
 
   const handleSearch = (e: React.FormEvent) => {

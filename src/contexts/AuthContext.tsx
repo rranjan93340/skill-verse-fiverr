@@ -9,11 +9,12 @@ interface User {
   avatar?: string;
   skills?: string[];
   description?: string;
+  company?: string;
 }
 
 interface AuthContextType {
   user: User | null;
-  login: (email: string, password: string) => Promise<boolean>;
+  login: (email: string, password: string, userType?: 'buyer' | 'seller') => Promise<boolean>;
   register: (userData: any) => Promise<boolean>;
   logout: () => void;
   loading: boolean;
@@ -46,20 +47,21 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setLoading(false);
   }, []);
 
-  const login = async (email: string, password: string): Promise<boolean> => {
+  const login = async (email: string, password: string, userType?: 'buyer' | 'seller'): Promise<boolean> => {
     try {
       // Mock authentication - in real app, this would call your backend
-      console.log('Login attempt:', { email, password });
+      console.log('Login attempt:', { email, password, userType });
       
       // Simulate API call
       const mockUser: User = {
         _id: '1',
         name: 'John Doe',
         email: email,
-        userType: 'both',
+        userType: userType || 'both',
         avatar: '/placeholder.svg',
-        skills: ['Web Development', 'React', 'Node.js'],
-        description: 'Full-stack developer with 5+ years of experience'
+        skills: userType === 'seller' ? ['Web Development', 'React', 'Node.js'] : undefined,
+        description: userType === 'seller' ? 'Full-stack developer with 5+ years of experience' : undefined,
+        company: userType === 'buyer' ? 'Tech Solutions Inc.' : undefined,
       };
       
       setUser(mockUser);
@@ -81,7 +83,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         name: userData.name,
         email: userData.email,
         userType: userData.userType,
-        avatar: '/placeholder.svg'
+        avatar: '/placeholder.svg',
+        skills: userData.skills || undefined,
+        description: userData.description || undefined,
+        company: userData.company || undefined,
       };
       
       setUser(newUser);
