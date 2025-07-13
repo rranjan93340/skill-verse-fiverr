@@ -2,18 +2,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Star, Search, Code, Palette, Camera, Music } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Search, Code, Palette, Camera, Music } from 'lucide-react';
+import { BuyerGigCard } from '@/components/buyer/BuyerGigCard';
 
 const Index = () => {
-  // Mock data for featured gigs
+  // Mock data for featured gigs with seller IDs
   const featuredGigs = [
     {
       id: '1',
       title: 'I will create a modern responsive website',
-      seller: { name: 'John Smith', avatar: '/placeholder.svg', rating: 4.9 },
+      seller: { 
+        id: 'seller-1',
+        name: 'John Smith', 
+        avatar: '/placeholder.svg', 
+        rating: 4.9 
+      },
       price: 150,
       image: '/placeholder.svg',
       category: 'Web Development',
@@ -22,7 +26,12 @@ const Index = () => {
     {
       id: '2',
       title: 'I will design a professional logo',
-      seller: { name: 'Sarah Johnson', avatar: '/placeholder.svg', rating: 4.8 },
+      seller: { 
+        id: 'seller-2',
+        name: 'Sarah Johnson', 
+        avatar: '/placeholder.svg', 
+        rating: 4.8 
+      },
       price: 50,
       image: '/placeholder.svg',
       category: 'Graphic Design',
@@ -31,7 +40,12 @@ const Index = () => {
     {
       id: '3',
       title: 'I will edit your videos professionally',
-      seller: { name: 'Mike Davis', avatar: '/placeholder.svg', rating: 4.9 },
+      seller: { 
+        id: 'seller-3',
+        name: 'Mike Davis', 
+        avatar: '/placeholder.svg', 
+        rating: 4.9 
+      },
       price: 75,
       image: '/placeholder.svg',
       category: 'Video Editing',
@@ -40,7 +54,12 @@ const Index = () => {
     {
       id: '4',
       title: 'I will compose original music',
-      seller: { name: 'Emma Wilson', avatar: '/placeholder.svg', rating: 4.7 },
+      seller: { 
+        id: 'seller-4',
+        name: 'Emma Wilson', 
+        avatar: '/placeholder.svg', 
+        rating: 4.7 
+      },
       price: 200,
       image: '/placeholder.svg',
       category: 'Music Production',
@@ -112,41 +131,7 @@ const Index = () => {
           <h2 className="text-3xl font-bold text-center mb-12">Featured Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredGigs.map((gig) => (
-              <Link key={gig.id} to={`/gig/${gig.id}`} className="group">
-                <Card className="hover:shadow-lg transition-shadow overflow-hidden">
-                  <div className="aspect-video bg-gray-200 relative overflow-hidden">
-                    <img
-                      src={gig.image}
-                      alt={gig.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                    />
-                  </div>
-                  <CardContent className="p-4">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Avatar className="h-6 w-6">
-                        <AvatarImage src={gig.seller.avatar} />
-                        <AvatarFallback>{gig.seller.name.charAt(0)}</AvatarFallback>
-                      </Avatar>
-                      <span className="text-sm font-medium">{gig.seller.name}</span>
-                    </div>
-                    <h3 className="font-semibold mb-2 line-clamp-2">{gig.title}</h3>
-                    <div className="flex items-center gap-1 mb-2">
-                      <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      <span className="text-sm font-medium">{gig.seller.rating}</span>
-                      <span className="text-sm text-gray-500">({gig.reviews})</span>
-                    </div>
-                    <Badge variant="secondary" className="mb-3">
-                      {gig.category}
-                    </Badge>
-                  </CardContent>
-                  <CardFooter className="px-4 pb-4 pt-0">
-                    <div className="flex items-center justify-between w-full">
-                      <span className="text-sm text-gray-500">Starting at</span>
-                      <span className="text-lg font-bold">${gig.price}</span>
-                    </div>
-                  </CardFooter>
-                </Card>
-              </Link>
+              <BuyerGigCard key={gig.id} gig={gig} />
             ))}
           </div>
         </div>

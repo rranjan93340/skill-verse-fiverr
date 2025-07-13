@@ -19,6 +19,7 @@ import Profile from './pages/Profile';
 import Messages from './pages/Messages';
 import HowItWorks from './pages/HowItWorks';
 import BecomeFreelancer from './pages/BecomeFreelancer';
+import SellerProfile from './pages/SellerProfile';
 import NotFound from './pages/NotFound';
 import { AuthProvider } from './contexts/AuthContext';
 import { Toaster } from './components/ui/toaster';
@@ -42,6 +43,7 @@ function App() {
               <Route path="/buyer/dashboard" element={<BuyerDashboard />} />
               <Route path="/create-gig" element={<CreateGig />} />
               <Route path="/gig/:id" element={<GigDetails />} />
+              <Route path="/seller/:id" element={<SellerProfile />} />
               <Route path="/search" element={<Search />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/messages" element={<Messages />} />
