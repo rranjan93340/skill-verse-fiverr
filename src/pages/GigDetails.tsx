@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -11,6 +10,7 @@ import { useToast } from '@/hooks/use-toast';
 
 const GigDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { toast } = useToast();
   const [selectedPackage, setSelectedPackage] = useState('basic');
   
@@ -113,9 +113,10 @@ I have over 5 years of experience in web development and have completed 200+ pro
   };
 
   const handleContactSeller = () => {
+    navigate('/messages');
     toast({
       title: "Message Sent",
-      description: "Your message has been sent to the seller",
+      description: "You've been redirected to messages to chat with the seller",
     });
   };
 
@@ -328,7 +329,7 @@ I have over 5 years of experience in web development and have completed 200+ pro
                   <span>{gig.seller.location}</span>
                 </div>
               </div>
-              <Button variant="outline" className="w-full mt-4">
+              <Button variant="outline" className="w-full mt-4" onClick={handleContactSeller}>
                 <MessageSquare className="h-4 w-4 mr-2" />
                 Contact Me
               </Button>

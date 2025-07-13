@@ -42,7 +42,7 @@ export const MessageBox: React.FC<MessageBoxProps> = ({ conversationId }) => {
     },
     {
       id: '2',
-      senderId: '1',
+      senderId: user?.email || '1',
       senderName: user?.name || 'You',
       senderAvatar: user?.avatar || '/placeholder.svg',
       content: 'That sounds great! Can you tell me more about your experience with React development?',
@@ -100,7 +100,7 @@ export const MessageBox: React.FC<MessageBoxProps> = ({ conversationId }) => {
 
     const newMessage: Message = {
       id: (messages.length + 1).toString(),
-      senderId: user?.id || '1',
+      senderId: user?.email || '1',
       senderName: user?.name || 'You',
       senderAvatar: user?.avatar || '/placeholder.svg',
       content: message,
@@ -134,7 +134,7 @@ export const MessageBox: React.FC<MessageBoxProps> = ({ conversationId }) => {
   const handleSendAnyway = () => {
     const newMessage: Message = {
       id: (messages.length + 1).toString(),
-      senderId: user?.id || '1',
+      senderId: user?.email || '1',
       senderName: user?.name || 'You',
       senderAvatar: user?.avatar || '/placeholder.svg',
       content: message,
