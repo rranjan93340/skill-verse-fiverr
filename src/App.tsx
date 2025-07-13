@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
@@ -23,6 +22,8 @@ import SellerProfile from './pages/SellerProfile';
 import NotFound from './pages/NotFound';
 import { AuthProvider } from './contexts/AuthContext';
 import { Toaster } from './components/ui/toaster';
+import BuyerHome from './pages/BuyerHome';
+import SellerHome from './pages/SellerHome';
 
 function App() {
   return (
@@ -33,6 +34,8 @@ function App() {
           <main className="flex-1">
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/buyer-home" element={<BuyerHome />} />
+              <Route path="/seller-home" element={<SellerHome />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/buyer/login" element={<BuyerLogin />} />

@@ -1,29 +1,13 @@
 
 import React from 'react';
-import { useAuth } from '@/contexts/AuthContext';
-import BuyerHome from './BuyerHome';
-import SellerHome from './SellerHome';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Search, Code, Palette, Camera, Music } from 'lucide-react';
+import { Search, Code, Palette, Camera, Music, TrendingUp, Users, Award } from 'lucide-react';
 import { BuyerGigCard } from '@/components/buyer/BuyerGigCard';
 
-const Index = () => {
-  const { user } = useAuth();
-
-  // If user is logged in, show appropriate home page
-  if (user) {
-    if (user.userType === 'seller') {
-      return <SellerHome />;
-    } else if (user.userType === 'buyer') {
-      return <BuyerHome />;
-    }
-    // For 'both' user type, default to buyer home
-    return <BuyerHome />;
-  }
-
-  // Default home page for non-logged in users
+const BuyerHome = () => {
+  // Mock data for featured gigs
   const featuredGigs = [
     {
       id: '1',
@@ -90,22 +74,28 @@ const Index = () => {
     { name: 'Music', icon: Music, color: 'bg-yellow-100 text-yellow-800' }
   ];
 
+  const stats = [
+    { icon: TrendingUp, title: 'Quality Work', description: '500K+ projects completed' },
+    { icon: Users, title: 'Expert Freelancers', description: '100K+ talented professionals' },
+    { icon: Award, title: 'Satisfaction', description: '95% client satisfaction rate' }
+  ];
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-green-600 to-blue-600 text-white py-20">
+      {/* Hero Section - Buyer Focused */}
+      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">
-            Find the perfect <span className="text-yellow-300">freelance</span> services for your business
+            Find the perfect <span className="text-yellow-300">freelancer</span> for your project
           </h1>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Millions of people use FreelanceHub to turn their ideas into reality.
+            Get your project done by skilled professionals. From design to development, we have the talent you need.
           </p>
           <div className="max-w-2xl mx-auto">
             <div className="flex rounded-lg overflow-hidden">
               <input
                 type="text"
-                placeholder="Try 'building mobile app'"
+                placeholder="What service do you need? (e.g., logo design, web development)"
                 className="flex-1 px-6 py-4 text-gray-800 text-lg"
               />
               <Button size="lg" className="bg-green-500 hover:bg-green-600 px-8">
@@ -116,10 +106,27 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Stats Section */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="inline-flex p-3 rounded-full bg-blue-100 text-blue-600 mb-4">
+                  <stat.icon className="h-8 w-8" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{stat.title}</h3>
+                <p className="text-gray-600">{stat.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Categories */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Popular Categories</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Browse by Category</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {categories.map((category) => (
               <Link
@@ -141,7 +148,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Featured Gigs */}
+      {/* Featured Services */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Featured Services</h2>
@@ -153,27 +160,44 @@ const Index = () => {
         </div>
       </section>
 
+      {/* How It Works */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">1</div>
+              <h3 className="text-xl font-semibold mb-2">Post Your Project</h3>
+              <p className="text-gray-600">Tell us what you need done and get free quotes from freelancers.</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">2</div>
+              <h3 className="text-xl font-semibold mb-2">Choose a Freelancer</h3>
+              <p className="text-gray-600">Compare profiles, reviews, and proposals then hire the perfect freelancer.</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
+              <h3 className="text-xl font-semibold mb-2">Get Your Work Done</h3>
+              <p className="text-gray-600">Collaborate and communicate until you're 100% satisfied with the work delivered.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
-      <section className="py-16 bg-green-600 text-white">
+      <section className="py-16 bg-blue-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to get started?</h2>
-          <p className="text-xl mb-8">Join millions of people who use FreelanceHub to turn their ideas into reality.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/register">
-              <Button size="lg" variant="secondary">
-                Get Started as a Buyer
-              </Button>
-            </Link>
-            <Link to="/register">
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-green-600">
-                Start Selling
-              </Button>
-            </Link>
-          </div>
+          <p className="text-xl mb-8">Join thousands of satisfied clients who found the perfect freelancer.</p>
+          <Link to="/search">
+            <Button size="lg" variant="secondary">
+              Find Freelancers Now
+            </Button>
+          </Link>
         </div>
       </section>
     </div>
   );
 };
 
-export default Index;
+export default BuyerHome;
