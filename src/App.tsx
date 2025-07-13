@@ -9,6 +9,7 @@ import BuyerLogin from './pages/BuyerLogin';
 import SellerLogin from './pages/SellerLogin';
 import BuyerRegister from './pages/BuyerRegister';
 import SellerRegister from './pages/SellerRegister';
+import SellerProfileSetup from './pages/SellerProfileSetup';
 import SellerDashboard from './pages/SellerDashboard';
 import BuyerDashboard from './pages/BuyerDashboard';
 import CreateGig from './pages/CreateGig';
@@ -42,6 +43,7 @@ function App() {
               <Route path="/seller/login" element={<SellerLogin />} />
               <Route path="/buyer/register" element={<BuyerRegister />} />
               <Route path="/seller/register" element={<SellerRegister />} />
+              <Route path="/seller/profile-setup" element={<SellerProfileSetup />} />
               <Route path="/seller/dashboard" element={<SellerDashboard />} />
               <Route path="/buyer/dashboard" element={<BuyerDashboard />} />
               <Route path="/create-gig" element={<CreateGig />} />

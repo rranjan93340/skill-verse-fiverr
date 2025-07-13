@@ -55,7 +55,7 @@ const SellerRegister = () => {
           title: "Account created!",
           description: "Welcome to FreelanceHub! You can now start selling your services.",
         });
-        navigate('/seller-dashboard');
+        navigate('/seller/profile-setup');
       } else {
         toast({
           title: "Registration failed",
